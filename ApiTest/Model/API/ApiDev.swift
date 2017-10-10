@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+extension Api {
+    /* namespace */ enum Dev {
+        private static let path = "anypath/id"
+        
+        static func get() -> Endpoint<Dev> {
+            return Endpoint(path: path)
+        }
+    }
+}

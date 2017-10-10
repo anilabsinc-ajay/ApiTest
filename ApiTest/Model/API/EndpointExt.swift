@@ -7,3 +7,34 @@
 //
 
 import Foundation
+import Mapper
+import RxCocoa
+import RxSwift
+import Decodable
+import protocol Decodable.Decodable
+
+extension Endpoint where Response: Decodable {
+    convenience init(method: Method = .get,
+                     path: Path,
+                     parameters: Parameters? = nil) {
+        self.init(
+            method: method,
+            path: path,
+            parameters: parameters,
+            decode: Response.decode
+        )
+    }
+}
+
+extension Endpoint where Response == Void {
+    convenience init(method: Method = .get,
+                     path: Path,
+                     parameters: Parameters? = nil) {
+        self.init(
+            method: method,
+            path: path,
+            parameters: parameters,
+            decode: { _ in () }
+        )
+    }
+}

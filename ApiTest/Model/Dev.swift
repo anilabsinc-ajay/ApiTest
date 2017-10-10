@@ -6,4 +6,13 @@
 //  Copyright © 2017 Herman Sadik. All rights reserved.
 //
 
-import Foundation
+import Mapper
+
+struct Dev: Mappable {
+    let id: String?
+    
+    // Implement this initializer
+    init(map: Mapper) throws {
+        try id = map.from("id")
+    }
+}
